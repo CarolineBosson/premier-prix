@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Premier Prix : l’estimation immédiate pour architectes d’intérieur</title>
+<meta name="description" content="Tes visiteurs veulent un prix tout de suite. Premier Prix affiche une fourchette sur ton site en 3 questions et ne te laisse chiffrer que les demandes sérieuses.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tes visiteurs veulent un prix tout de suite. Donne-le-leur.">
+<meta property="og:description" content="Une fourchette de prix sur ton site en 3 questions. Tu ne chiffres plus que les demandes sérieuses.">
+<meta property="og:locale" content="fr_FR">
+<meta name="theme-color" content="#16284A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--encre:#16284A;--crayon:#F2C230;--fond:#F4F6F7;--texte:#1B1F24;--gris:#5C6672;--trait:#D5DBE0;--blanc:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--fond);color:var(--texte);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:18px;line-height:1.55;padding-bottom:84px}
+.wrap{max-width:680px;margin:0 auto;padding:0 20px}
+h1,h2{font-weight:800;line-height:1.08;letter-spacing:-.02em;color:var(--encre);margin:0}
+h1{font-size:clamp(2.2rem,9vw,3.6rem)}
+h2{font-size:clamp(1.6rem,6vw,2.1rem);margin-bottom:14px}
+p{margin:0 0 14px}
+.hero{padding:36px 0 40px}
+.lead{font-size:1.15rem;color:var(--gris);margin:18px 0 26px;max-width:34em}
+.btn{display:block;text-align:center;background:var(--crayon);color:var(--encre);font:800 1.15rem/1 inherit;font-family:inherit;padding:19px 24px;border-radius:6px;text-decoration:none;border:2px solid var(--encre)}
+.btn:hover{background:#ffd24d}
+a:focus-visible,summary:focus-visible,input:focus-visible,label:focus-within{outline:3px solid var(--encre);outline-offset:3px}
+.sous-btn{font-size:.9rem;color:var(--gris);margin:10px 0 0;text-align:center}
+.demo{background:var(--blanc);border:2px solid var(--encre);border-radius:6px;padding:20px;margin:0 0 26px}
+.demo-t{font-weight:600;margin:0 0 14px;color:var(--encre)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px;border:0;padding:0}
+.chips label{border:2px solid var(--trait);border-radius:6px;padding:10px 12px;cursor:pointer;font-size:.95rem;font-weight:600}
+.chips input{position:absolute;opacity:0}
+.chips label:has(input:checked){border-color:var(--encre);background:var(--encre);color:var(--blanc)}
+.surf{display:flex;justify-content:space-between;font-weight:600;font-size:.95rem}
+input[type=range]{width:100%;accent-color:var(--encre);height:36px;margin:2px 0 8px}
+.res{border-top:2px dashed var(--trait);padding-top:14px;margin-top:6px}
+.res small{display:block;color:var(--gris);font-size:.85rem}
+.prix{font-size:clamp(1.7rem,7vw,2.3rem);font-weight:800;color:var(--encre);line-height:1.1;margin:4px 0}
+.ex{font-size:.8rem;color:var(--gris);margin:8px 0 0}
+section{padding:34px 0;border-top:1px solid var(--trait)}
+.plan{list-style:none;margin:0;padding:0}
+.plan li{padding:0 0 18px 18px;border-left:6px solid var(--crayon);margin:0 0 18px}
+.plan b{display:block;color:var(--encre);font-size:1.1rem}
+.offre{background:var(--encre);color:var(--blanc);border-radius:6px;padding:26px 22px}
+.offre h2{color:var(--blanc)}
+.gros{font-size:2.6rem;font-weight:800;line-height:1;margin:0 0 4px}
+.gros span{font-size:1rem;font-weight:400;opacity:.85}
+.offre ul{margin:16px 0 22px;padding-left:20px}
+.offre li{margin-bottom:6px}
+.garantie{background:rgba(255,255,255,.1);border-radius:6px;padding:14px 16px;margin:0 0 20px;font-size:.98rem}
+.offre .sous-btn{color:#D9E0EA}
+details{border-bottom:1px solid var(--trait);padding:14px 0}
+summary{font-weight:600;cursor:pointer;color:var(--encre)}
+details p{margin:10px 0 0;color:var(--gris)}
+footer{padding:30px 0;font-size:.85rem;color:var(--gris)}
+footer a{color:var(--gris);margin-right:14px}
+.offre label{display:block;font-weight:600;margin:0 0 6px}
+.offre input[type=email]{width:100%;font:inherit;font-size:1.05rem;padding:15px 14px;border:2px solid var(--blanc);border-radius:6px;margin:0 0 12px;color:var(--texte)}
+.offre button.btn{width:100%;cursor:pointer}
+.offre input[type=email]:focus-visible,.offre button:focus-visible{outline:3px solid var(--crayon)}
+.barre{position:fixed;left:0;right:0;bottom:0;background:var(--fond);border-top:1px solid var(--trait);padding:10px 20px calc(10px + env(safe-area-inset-bottom,0px));z-index:5}
+.barre .btn{max-width:640px;margin:0 auto;padding:15px 20px}
+@media(min-width:760px){.barre{display:none}body{padding-bottom:0}}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<header class="hero">
+  <h1>Tes visiteurs veulent un prix tout de suite. Donne-le-leur.</h1>
+  <p class="lead">Premier Prix affiche une fourchette de prix sur ton site, en 3 questions. Tu ne chiffres plus que les demandes sérieuses.</p>
+
+  <div class="demo" aria-label="Démonstration">
+    <p class="demo-t">Essaie : voilà ce que verrait ton visiteur.</p>
+    <fieldset class="chips">
+      <legend class="sr" style="position:absolute;left:-9999px">Type de projet</legend>
+      <label><input type="radio" name="t" value="150-250" checked>Aménagement et déco</label>
+      <label><input type="radio" name="t" value="350-500">Rénovation légère</label>
+      <label><input type="radio" name="t" value="800-1200">Rénovation complète</label>
+    </fieldset>
+    <div class="surf"><span>Surface</span><span id="sv">60 m²</span></div>
+    <input type="range" id="s" min="10" max="200" step="5" value="60" aria-label="Surface en mètres carrés">
+    <div class="res">
+      <small>Ton visiteur voit, tout de suite :</small>
+      <p class="prix" id="p">9 000 € à 15 000 €</p>
+      <small>Puis il laisse ses coordonnées pour recevoir ton devis précis.</small>
+    </div>
+    <p class="ex">Démo avec des prix d’exemple. Tu règles les tiens.</p>
+  </div>
+
+  <a class="btn" href="#prevenir">Être prévenu du lancement</a>
+  <p class="sous-btn">Gratuit : un seul email, le jour de l’ouverture. Prix prévu : 29 € par mois, sans engagement.</p>
+</header>
+
+<section>
+  <h2>Chaque devis sans suite te coûte du temps</h2>
+  <p>Un visiteur qui n’a pas de réponse en quelques secondes ferme l’onglet et demande ailleurs. Et toi, tu chiffres des demandes qui n’aboutiront jamais.</p>
+  <p>Exemple : 10 devis sans suite à 45 minutes chacun, ce sont <strong>7 h 30</strong> perdues. Sur ton propre chiffre, fais le calcul.</p>
+</section>
+
+<section>
+  <h2>Ce que tu obtiens</h2>
+  <ul class="plan">
+    <li><b>Le visiteur a son ordre de prix tout de suite</b>Il n’attend plus ton retour pour savoir si c’est dans son budget.</li>
+    <li><b>Tu reçois ses coordonnées</b>Pas un curieux anonyme : un nom, un contact, un projet.</li>
+    <li><b>Tes demandes sont classées par montant estimé</b>Tu réponds d’abord aux plus gros projets.</li>
+  </ul>
+</section>
+
+<section id="prevenir">
+  <div class="offre">
+    <h2>Ouverture prochaine</h2>
+    <p class="gros">29 €<span> par mois</span></p>
+    <p>Moins d’1 € par jour.</p>
+    <ul>
+      <li>Ton estimateur en 3 questions, aux prix que tu choisis</li>
+      <li>Les demandes qualifiées, classées par montant</li>
+      <li>Accès envoyé par email après ton paiement</li>
+    </ul>
+    <p class="garantie"><strong>Au lancement : satisfait ou remboursé 14 jours.</strong> Écris-moi à bossoncaroline04@gmail.com dans les 14 jours : je te rembourse sous 5 jours, sans question.</p>
+    <form id="f" action="https://formspree.io/f/moeebado" method="POST">
+      <label for="e">Ton email</label>
+      <input id="e" type="email" name="email" required autocomplete="email" placeholder="ton@email.fr">
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+      <button class="btn" type="submit">Me prévenir du lancement</button>
+      <p class="sous-btn" id="fm">Ton email sert uniquement à te prévenir du lancement de Premier Prix. Pour le faire supprimer, écris à bossoncaroline04@gmail.com.</p>
+    </form>
+  </div>
+</section>
+
+<section>
+  <h2>Questions fréquentes</h2>
+  <details><summary>Est-ce que ça marche pour mon cas ?</summary><p>Si tes prix dépendent de quelques critères (surface, type de travaux, niveau de finition), oui. Tu choisis les critères et les prix. Si ton cas est trop particulier, la garantie est là.</p></details>
+  <details><summary>Combien de temps ça me prend ?</summary><p>Le temps de choisir tes critères et tes fourchettes. Ensuite, les demandes arrivent sans rien faire de ta part.</p></details>
+  <details><summary>Et si je veux arrêter ?</summary><p>Tu résilies quand tu veux, sans engagement. Et dans les 14 premiers jours, tu es remboursé sur simple email.</p></details>
+  <details><summary>À quoi sert ce que je paie ?</summary><p>À avoir un estimateur qui répond à tes visiteurs à ta place, et à recevoir leurs coordonnées classées par montant estimé.</p></details>
+</section>
+
+</main>
+
+<footer class="wrap">
+  <a href="#">Mentions légales</a><a href="#">CGV</a><a href="#">Confidentialité</a>
+</footer>
+
+<div class="barre"><a class="btn" href="#prevenir">Être prévenu du lancement</a></div>
+
+<script>
+(function(){
+  var s=document.getElementById('s'),sv=document.getElementById('sv'),p=document.getElementById('p');
+  function f(n){return (Math.round(n/100)*100).toLocaleString('fr-FR')+' €'}
+  function maj(){
+    var m=+s.value,r=document.querySelector('input[name=t]:checked').value.split('-');
+    sv.textContent=m+' m²';
+    p.textContent=f(m*r[0])+' à '+f(m*r[1]);
+  }
+  s.addEventListener('input',maj);
+  document.querySelectorAll('input[name=t]').forEach(function(i){i.addEventListener('change',maj)});
+  maj();
+  var f=document.getElementById('f'),m=document.getElementById('fm');
+  f.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var b=f.querySelector('button');b.disabled=true;
+    fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}})
+    .then(function(r){
+      if(r.ok){f.reset();m.textContent='C’est noté. Tu recevras un email le jour du lancement.';}
+      else{m.textContent='L’envoi a échoué. Réessaie, ou écris à bossoncaroline04@gmail.com.';}
+      b.disabled=false;
+    }).catch(function(){m.textContent='L’envoi a échoué. Vérifie ta connexion et réessaie.';b.disabled=false;});
+  });
+})();
+</script>
+</body>
+</html>
