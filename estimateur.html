@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Estimation de votre projet</title>
+<meta name="description" content="Obtenez tout de suite une fourchette de prix pour votre projet, en 3 questions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--encre:#16284A;--crayon:#F2C230;--fond:#F4F6F7;--texte:#1B1F24;--gris:#5C6672;--trait:#D5DBE0;--blanc:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fond);color:var(--texte);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:18px;line-height:1.5}
+.wrap{max-width:560px;margin:0 auto;padding:22px 20px 40px}
+.pro{font-weight:800;color:var(--encre);margin:0 0 18px}
+.bar{height:8px;background:var(--trait);border-radius:4px;overflow:hidden;margin:0 0 8px}
+.bar i{display:block;height:100%;width:33%;background:var(--crayon);border-right:2px solid var(--encre);transition:width .3s}
+.etape{font-size:.9rem;color:var(--gris);margin:0 0 22px}
+h1{font-size:clamp(1.7rem,7vw,2.2rem);line-height:1.1;letter-spacing:-.02em;color:var(--encre);margin:0 0 20px;font-weight:800}
+.choix{display:grid;gap:10px}
+.choix button,.btn{font:inherit;font-weight:600;text-align:left;background:var(--blanc);border:2px solid var(--encre);border-radius:6px;padding:17px 16px;color:var(--encre);cursor:pointer;min-height:56px}
+.choix button small{display:block;font-weight:400;color:var(--gris);font-size:.88rem}
+.choix button:hover{background:#FFF6D6}
+.btn{background:var(--crayon);font-weight:800;text-align:center;width:100%;margin-top:14px}
+.btn:disabled{opacity:.6}
+.retour{background:none;border:0;font:inherit;font-size:.95rem;color:var(--gris);text-decoration:underline;padding:12px 0;cursor:pointer;margin-top:8px}
+:focus-visible{outline:3px solid var(--encre);outline-offset:3px}
+.val{font-size:2.4rem;font-weight:800;color:var(--encre);margin:0}
+input[type=range]{width:100%;accent-color:var(--encre);height:40px}
+.res{background:var(--encre);color:var(--blanc);border-radius:6px;padding:22px;margin:0 0 22px}
+.res p{margin:0}
+.res .gros{font-size:clamp(1.9rem,8vw,2.6rem);font-weight:800;line-height:1.1;margin:6px 0 10px}
+.res small{opacity:.85;font-size:.88rem}
+label{display:block;font-weight:600;margin:0 0 6px}
+input[type=text],input[type=email],input[type=tel]{width:100%;font:inherit;padding:14px;border:2px solid var(--trait);border-radius:6px;margin:0 0 14px;background:var(--blanc)}
+.note{font-size:.85rem;color:var(--gris);margin:10px 0 0}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="pro" id="pro"></p>
+<div class="bar" aria-hidden="true"><i id="b"></i></div>
+<p class="etape" id="et" aria-live="polite"></p>
+
+<section id="s1"><h1>Quel est votre projet ?</h1><div class="choix" id="c1"></div></section>
+
+<section id="s2" hidden>
+  <h1>Quelle surface à traiter ?</h1>
+  <p class="val" id="sv">60 m²</p>
+  <input type="range" id="sr" min="10" max="200" step="5" value="60" aria-label="Surface en mètres carrés">
+  <button class="btn" id="ok2" type="button">Continuer</button>
+  <button class="retour" data-r="1" type="button">Retour</button>
+</section>
+
+<section id="s3" hidden>
+  <h1>Quel niveau de finition ?</h1><div class="choix" id="c3"></div>
+  <button class="retour" data-r="2" type="button">Retour</button>
+</section>
+
+<section id="s4" hidden>
+  <div class="res" aria-live="polite">
+    <p id="rec"></p>
+    <p class="gros" id="fo"></p>
+    <small>Estimation indicative. Le devis précis dépend de votre projet.</small>
+  </div>
+  <h1 style="font-size:1.5rem">Recevez votre devis précis</h1>
+  <form id="f" action="https://formspree.io/f/moeebado" method="POST">
+    <label for="n">Votre nom</label>
+    <input id="n" type="text" name="nom" required autocomplete="name">
+    <label for="e">Votre email</label>
+    <input id="e" type="email" name="email" required autocomplete="email">
+    <label for="t">Téléphone (facultatif)</label>
+    <input id="t" type="tel" name="telephone" autocomplete="tel">
+    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+    <input type="hidden" name="_subject" id="sub">
+    <input type="hidden" name="montant_estime" id="mt">
+    <input type="hidden" name="projet" id="pj">
+    <button class="btn" type="submit">Recevoir mon devis précis</button>
+    <p class="note" id="fm"></p>
+    <p class="note" id="rgpd"></p>
+  </form>
+</section>
+</div>
+
+<script>
+/* ===== RÉGLAGES DU PROFESSIONNEL : à modifier ici ===== */
+var CONFIG={
+  nom:"Studio Exemple",            /* nom affiché en haut */
+  types:[                           /* prix au m², minimum et maximum */
+    {nom:"Aménagement et déco",aide:"Mobilier, couleurs, agencement",min:150,max:250},
+    {nom:"Rénovation légère",aide:"Peinture, sols, cuisine ou salle de bain",min:350,max:500},
+    {nom:"Rénovation complète",aide:"Travaux lourds, redistribution des pièces",min:800,max:1200}
+  ],
+  finitions:[                       /* coefficient appliqué au prix */
+    {nom:"Standard",aide:"Bon rapport qualité-prix",k:1},
+    {nom:"Soigné",aide:"Matériaux de qualité",k:1.25},
+    {nom:"Haut de gamme",aide:"Sur mesure, matériaux nobles",k:1.6}
+  ],
+  contact:"bossoncaroline04@gmail.com"
+};
+/* ===== FIN DES RÉGLAGES ===== */
+var d={t:null,s:60,f:null},cur=1;
+var $=function(i){return document.getElementById(i)};
+function eur(n){return(Math.round(n/100)*100).toLocaleString('fr-FR')+' €'}
+function go(n){
+  cur=n;
+  for(var i=1;i<=4;i++)$('s'+i).hidden=(i!==n);
+  $('b').style.width=(n===4?100:n*33)+'%';
+  $('et').textContent=n===4?'Votre estimation':'Question '+n+' sur 3';
+  window.scrollTo(0,0);
+}
+function liste(id,arr,fn){
+  arr.forEach(function(o,i){
+    var b=document.createElement('button');b.type='button';
+    b.innerHTML=o.nom+'<small>'+o.aide+'</small>';
+    b.onclick=function(){fn(i)};
+    $(id).appendChild(b);
+  });
+}
+$('pro').textContent=CONFIG.nom;
+liste('c1',CONFIG.types,function(i){d.t=i;go(2)});
+liste('c3',CONFIG.finitions,function(i){d.f=i;calc()});
+$('sr').oninput=function(){d.s=+this.value;$('sv').textContent=d.s+' m²'};
+$('ok2').onclick=function(){go(3)};
+document.querySelectorAll('.retour').forEach(function(b){b.onclick=function(){go(+b.dataset.r)}});
+function calc(){
+  var t=CONFIG.types[d.t],f=CONFIG.finitions[d.f];
+  var lo=d.s*t.min*f.k,hi=d.s*t.max*f.k;
+  var proj=t.nom+', '+d.s+' m², finition '+f.nom.toLowerCase();
+  $('rec').textContent=proj;
+  $('fo').textContent=eur(lo)+' à '+eur(hi);
+  var mid=Math.round((lo+hi)/2/100)*100;
+  $('sub').value='['+mid.toLocaleString('fr-FR')+' €] '+proj;
+  $('mt').value=mid;
+  $('pj').value=proj+' | fourchette '+eur(lo)+' à '+eur(hi);
+  $('rgpd').textContent='Vos coordonnées sont transmises à '+CONFIG.nom+' uniquement pour établir votre devis. Pour les faire supprimer : '+CONFIG.contact+'.';
+  go(4);
+}
+var f=$('f'),m=$('fm');
+f.addEventListener('submit',function(ev){
+  ev.preventDefault();
+  var b=f.querySelector('button.btn');b.disabled=true;
+  fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}})
+  .then(function(r){
+    if(r.ok){f.reset();m.textContent='Merci. Votre demande est envoyée, vous serez recontacté pour votre devis précis.';}
+    else{m.textContent='L’envoi a échoué. Réessayez, ou écrivez à '+CONFIG.contact+'.';b.disabled=false;}
+  }).catch(function(){m.textContent='L’envoi a échoué. Vérifiez votre connexion et réessayez.';b.disabled=false;});
+});
+go(1);
+</script>
+</body>
+</html>
